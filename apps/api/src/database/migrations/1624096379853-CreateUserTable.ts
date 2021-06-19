@@ -40,9 +40,9 @@ export class CreateUserTable1624096379853 implements MigrationInterface {
         isNullable: true,
       },
       {
-        name: 'state',
-        type: 'BOOLEAN',
-        default: false,
+        name: 'validated_at',
+        type: 'TIMESTAMP',
+        isNullable: true,
       },
       {
         name: 'created_at',
