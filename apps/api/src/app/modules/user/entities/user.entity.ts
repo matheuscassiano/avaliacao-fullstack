@@ -5,7 +5,10 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
+import { Knowledge } from '../../knowledge/entities/knowledge.entity';
 
 @Entity({ name: 'users' })
 export class User {
@@ -24,11 +27,19 @@ export class User {
   @Column({ unique: true })
   cpf: string;
 
-  @Column({ name: 'phone_number'})
+  @Column({ name: 'phone_number' })
   phoneNumber: string;
 
   @Column({ name: 'state' })
   isValid: boolean;
+
+  @ManyToMany(() => Knowledge, { cascade: true, eager: true })
+  @JoinTable({
+    name: 'user_knowledge',
+    joinColumn: { name: 'user_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'knowledge_id', referencedColumnName: 'id' },
+  })
+  knowledge: Knowledge[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt?: string;
