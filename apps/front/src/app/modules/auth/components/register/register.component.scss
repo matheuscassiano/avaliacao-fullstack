@@ -41,6 +41,10 @@
   background-color: #f2f2f2;
 }
 
+.invalid.input, .invalid.select {
+  border: 0.1em solid red;
+}
+
 .badge-container {
   width: 100%;
   display: flex;
