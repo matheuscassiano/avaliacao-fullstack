@@ -8,6 +8,10 @@
   color: black;
 }
 
+tr {
+  cursor: pointer;
+}
+
 table thead tr th:first-child,
 table tbody tr td:first-child {
   border-radius: 0.25rem 0 0 0.25rem;
@@ -36,6 +40,16 @@ table tbody td {
 
 table tbody tr:hover td {
   background-color: rgb(255, 231, 195);
+}
+
+.valid {
+  color: green;
+  font-weight: 500;
+}
+
+.invalid {
+  color: orangered;
+  font-weight: 500;
 }
 
 .actions {
