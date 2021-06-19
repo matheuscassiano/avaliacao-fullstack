@@ -19,4 +19,16 @@ export class UserService {
       );
     }
   }
+
+  async create(body): Promise<User[]> {
+    try {
+      const entity = Object.assign(new User(), body);
+      return await this.userRepository.save(entity);
+    } catch (error) {
+      throw new HttpException(
+        { message: 'Erro ao cadastrar usuário!' },
+        HttpStatus.BAD_REQUEST
+      );
+    }
+  }
 }
