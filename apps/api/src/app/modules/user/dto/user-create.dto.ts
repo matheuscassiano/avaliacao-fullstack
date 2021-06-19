@@ -4,6 +4,7 @@ import {
   IsArray,
   IsEmail,
   IsNotEmpty,
+  IsOptional,
   Length,
 } from 'class-validator';
 
@@ -28,4 +29,7 @@ export class UserCreateDto {
   @ArrayMinSize(1, { message: 'Deve haver ao menos 1 item em sua lista' })
   @ArrayMaxSize(3, { message: 'Deve haver no máximo 3 itens em sua lista' })
   knowledge: number[];
+
+  @IsOptional()
+  phoneNumber: string;
 }
