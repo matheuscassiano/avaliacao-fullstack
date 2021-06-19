@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { InputMaskModule } from 'ngx-input-mask';
+import { ValidateComponent } from './components/validate/validate.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,6 @@ import { InputMaskModule } from 'ngx-input-mask';
     ReactiveFormsModule,
     RouterModule.forChild(authRoutes),
   ],
-  declarations: [AuthComponent, LoginComponent, RegisterComponent],
+  declarations: [AuthComponent, LoginComponent, RegisterComponent, ValidateComponent],
 })
 export class AuthModule {}
