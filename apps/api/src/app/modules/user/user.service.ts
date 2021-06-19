@@ -39,15 +39,26 @@ export class UserService {
     }
   }
 
+  async findOneByName(name: string): Promise<User> {
+    try {
+      return await this.userRepository.findOneOrFail({ name });
+    } catch (error) {
+      throw new HttpException(
+        { message: 'Usuário não encontrado!' },
+        HttpStatus.BAD_REQUEST
+      );
+    }
+  }
+
   async findByEmail(email: string): Promise<User> {
     try {
-    return this.userRepository.findOneOrFail({ email });
-  } catch (error) {
-    throw new HttpException(
-      { message: 'Usuário não encontrado!' },
-      HttpStatus.BAD_REQUEST
-    );
-  }
+      return this.userRepository.findOneOrFail({ email });
+    } catch (error) {
+      throw new HttpException(
+        { message: 'Usuário não encontrado!' },
+        HttpStatus.BAD_REQUEST
+      );
+    }
   }
 
   async create(body: UserCreateDto): Promise<User> {
