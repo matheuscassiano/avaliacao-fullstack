@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
       })
       .then((res) => {
         localStorage.setItem('token', res.access_token);
-        this.router.navigate(['users/list']);
+        this.router.navigate(['registros']);
       })
       .catch(console.log);
   }
