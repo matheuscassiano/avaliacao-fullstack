@@ -19,7 +19,7 @@
         <td [class]="item.validatedAt ? 'valid' : 'invalid'">
           {{ item.validatedAt ? 'Validado' : 'Não validado' }}
         </td>
-        <td>{{ item.validatedAt | date: 'dd/MM/YYYY' }}</td>
+        <td>{{ item.validatedAt | date: 'dd/MM/YYYY - hh:mm' }}</td>
       </tr>
     </tbody>
   </table>
