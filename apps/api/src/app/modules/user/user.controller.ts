@@ -29,6 +29,12 @@ export class UserController {
     return this.userService.findOne(id);
   }
 
+  @Get('name/:name')
+  @UseGuards(JwtAuthGuard)
+  findOneByName(@Param('name') name: string) {
+    return this.userService.findOneByName(name);
+  }
+
   @Post()
   create(@Body() body: UserCreateDto) {
     return this.userService.create(body);
