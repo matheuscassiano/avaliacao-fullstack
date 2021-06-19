@@ -11,9 +11,21 @@ export class UserService {
     @InjectRepository(User)
     private userRepository: Repository<User>
   ) {}
+
   async findAll(): Promise<User[]> {
     try {
       return await this.userRepository.find();
+    } catch (error) {
+      throw new HttpException(
+        { message: 'Usuários não encontrados!' },
+        HttpStatus.BAD_REQUEST
+      );
+    }
+  }
+
+  async findOne(id: number): Promise<User> {
+    try {
+      return await this.userRepository.findOneOrFail(id);
     } catch (error) {
       throw new HttpException(
         { message: 'Usuários não encontrados!' },
