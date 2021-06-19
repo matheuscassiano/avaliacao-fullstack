@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-list',
@@ -6,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  constructor() {}
+  constructor(private readonly usersService: UsersService) {}
 
-  ngOnInit() {}
+  list: any[] = [];
+  ngOnInit() {
+    this.usersService
+      .findAll()
+      .then((res) => {
+        this.list = res.sort((a: { name: string }, b: { name: string }) =>
+          a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+        );
+      })
+      .catch(console.log);
+  }
 }
