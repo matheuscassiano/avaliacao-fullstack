@@ -2,7 +2,7 @@
   <form class="form" [formGroup]="register" (ngSubmit)="onSubmit()">
     <h2 class="title">{{ name }}</h2>
     <input
-      class="input"
+      [class]="this.register.controls.email.valid ? 'input' : 'invalid input'"
       type="email"
       placeholder="Email"
       formControlName="email"
@@ -10,14 +10,16 @@
       required
     />
     <input
-      class="input"
+      [class]="
+        this.register.controls.password.valid ? 'input' : 'invalid input'
+      "
       type="password"
       placeholder="Senha"
       formControlName="password"
       required
     />
     <input
-      class="input"
+      [class]="this.register.controls.cpf.valid ? 'input' : 'invalid input'"
       type="text"
       placeholder="CPF"
       formControlName="cpf"
@@ -25,14 +27,22 @@
       required
     />
     <input
-      class="input"
+      [class]="this.register.controls.phone.valid ? 'input' : 'invalid input'"
       type="phone"
       matInput
       placeholder="Celular"
       formControlName="phone"
       inputMask="(00) 00000-0000"
     />
-    <select class="select" (change)="addKnowledge($event)" required>
+    <select
+      [class]="
+        selectedKnowledge.length < 1 || selectedKnowledge.length >= 4
+          ? 'invalid select'
+          : 'select'
+      "
+      (change)="addKnowledge($event)"
+      required
+    >
       <option *ngFor="let item of knowledge" [value]="item.id">
         {{ item.name }}
       </option>
@@ -46,6 +56,15 @@
         {{ item.name }}
       </span>
     </div>
-    <button class="submit" [disabled]="!this.register.valid">Registrar</button>
+    <button
+      class="submit"
+      [disabled]="
+        !register.valid ||
+        selectedKnowledge.length < 1 ||
+        selectedKnowledge.length >= 4
+      "
+    >
+      Registrar
+    </button>
   </form>
 </main>
