@@ -28,7 +28,11 @@ export class RegisterComponent implements OnInit {
       Validators.required,
       Validators.maxLength(100),
     ]),
-    cpf: new FormControl(null, [Validators.required, Validators.maxLength(14)]),
+    cpf: new FormControl(null, [
+      Validators.required,
+      Validators.maxLength(14),
+      Validators.minLength(14),
+    ]),
     phone: new FormControl(null, [Validators.maxLength(15)]),
   });
 
@@ -49,6 +53,8 @@ export class RegisterComponent implements OnInit {
     this.router.params.subscribe(({ name }) => {
       this.name = name;
     });
+
+    console.log(this.register);
   }
 
   addKnowledge(event: any) {
