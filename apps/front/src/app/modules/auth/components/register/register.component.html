@@ -1,3 +1,51 @@
-<p>
-  register works!
-</p>
+<main class="form-container">
+  <form class="form" [formGroup]="register" (ngSubmit)="onSubmit()">
+    <h2 class="title">{{ name }}</h2>
+    <input
+      class="input"
+      type="email"
+      placeholder="Email"
+      formControlName="email"
+      email="true"
+      required
+    />
+    <input
+      class="input"
+      type="password"
+      placeholder="Senha"
+      formControlName="password"
+      required
+    />
+    <input
+      class="input"
+      type="text"
+      placeholder="CPF"
+      formControlName="cpf"
+      inputMask="000.000.000-00"
+      required
+    />
+    <input
+      class="input"
+      type="phone"
+      matInput
+      placeholder="Celular"
+      formControlName="phone"
+      inputMask="(00) 00000-0000"
+    />
+    <select class="select" (change)="addKnowledge($event)" required>
+      <option *ngFor="let item of knowledge" [value]="item.id">
+        {{ item.name }}
+      </option>
+    </select>
+    <div class="badge-container" cdkDropListOrientation="horizontal">
+      <span
+        class="badge"
+        *ngFor="let item of selectedKnowledge"
+        (click)="removeKnowledge(item)"
+      >
+        {{ item.name }}
+      </span>
+    </div>
+    <button class="submit" [disabled]="!this.register.valid">Registrar</button>
+  </form>
+</main>
