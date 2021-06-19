@@ -1,4 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { Knowledge } from '../../app/modules/knowledge/entities/knowledge.entity';
 import { User } from '../../app/modules/user/entities/user.entity';
 
 export const databaseProviders: TypeOrmModuleOptions = {
@@ -8,6 +9,6 @@ export const databaseProviders: TypeOrmModuleOptions = {
   username: 'root',
   password: '',
   database: 'avaliacao',
-  entities: [User],
+  entities: [User, Knowledge],
   synchronize: true,
-}
+};
