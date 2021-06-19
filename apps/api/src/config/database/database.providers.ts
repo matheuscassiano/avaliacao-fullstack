@@ -5,11 +5,11 @@ import { User } from '../../app/modules/user/entities/user.entity';
 
 export const databaseProviders: TypeOrmModuleOptions = {
   type: 'mysql',
-  host: 'localhost',
-  port: 3306,
-  username: 'root',
-  password: '',
-  database: 'avaliacao',
+  host: process.env.TYPEORM_HOST,
+  port: +process.env.TYPEORM_HOST,
+  username: process.env.TYPEORM_USERNAME,
+  password: process.env.TYPEORM_PASSWORD,
+  database: process.env.TYPEORM_DATABASE,
   entities: [User, Knowledge, UserKnowledge],
-  synchronize: true,
+  synchronize: Boolean(process.env.TYPEORM_SYNCHRONIZE),
 };
