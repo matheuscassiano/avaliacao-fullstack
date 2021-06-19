@@ -1,4 +1,5 @@
 import {
+  ArrayMaxSize,
   ArrayMinSize,
   IsArray,
   IsEmail,
@@ -25,6 +26,6 @@ export class UserCreateDto {
 
   @IsArray({ message: 'Este item deverá ser enviado como array' })
   @ArrayMinSize(1, { message: 'Deve haver ao menos 1 item em sua lista' })
-  @ArrayMinSize(3, { message: 'Deve haver no máximo 3 itens em sua lista' })
+  @ArrayMaxSize(3, { message: 'Deve haver no máximo 3 itens em sua lista' })
   knowledge: number[];
 }
