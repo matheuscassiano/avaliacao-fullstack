@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, Length } from 'class-validator';
+import { ArrayMaxSize, IsEmail, IsNotEmpty, Length } from 'class-validator';
 
 export class UserUpdateDto {
   @IsNotEmpty({ message: 'Campo nome é obrigatório!' })
@@ -18,5 +18,5 @@ export class UserUpdateDto {
   cpf: string;
 
   @IsNotEmpty({ message: 'Campo de validação é obrigatório!' })
-  isValit: boolean;
+  isValid: boolean;
 }
