@@ -5,9 +5,16 @@ import { RouterModule } from '@angular/router';
 import { usersRoutes } from './users-routing.module';
 import { ListComponent } from './components/list/list.component';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(usersRoutes), SharedModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(usersRoutes),
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   declarations: [UsersComponent, ListComponent],
 })
 export class UsersModule {}
