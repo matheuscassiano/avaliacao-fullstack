@@ -6,11 +6,14 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { KnowledgeCreateDto } from './dto/knowledge-create.dto';
 import { KnowledgeUpdateDto } from './dto/knowledge-update.dto';
 import { KnowledgeService } from './knowledge.service';
 
+@UseGuards(JwtAuthGuard)
 @Controller('knowledge')
 export class KnowledgeController {
   constructor(private readonly userService: KnowledgeService) {}
