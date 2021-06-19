@@ -1,5 +1,5 @@
-<main>
-  <table>
+<main class="container">
+  <table class="users-table">
     <thead>
       <tr>
         <th>Nome</th>
@@ -8,20 +8,16 @@
         <th>Celular</th>
         <th>Estado</th>
         <th>Data de aprovação</th>
-        <th>Ações</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>name</td>
-        <td>email</td>
-        <td>cpf</td>
-        <td>phoneNumber</td>
-        <td>validate_at</td>
-        <td>validate_at</td>
-        <td>
-          <button>Validar</button>
-        </td>
+      <tr *ngFor="let item of list">
+        <td>{{ item.name }}</td>
+        <td>{{ item.email }}</td>
+        <td>{{ item.cpf }}</td>
+        <td>{{ item.phoneNumber }}</td>
+        <td>{{ item.validatedAt ? 'Validado' : 'Não validado' }}</td>
+        <td>{{ item.validatedAt | date: 'dd/MM/YYYY' }}</td>
       </tr>
     </tbody>
   </table>
