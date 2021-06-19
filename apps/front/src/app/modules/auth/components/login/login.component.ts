@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.authService
       .login({
-        email: this.login.controls.email.value,
-        password: this.login.controls.password.value,
+        email: this.login.value.email,
+        password: this.login.value.password,
       })
       .then((res) => {
         localStorage.setItem('token', res.access_token);
-        this.router.navigate(['registros']);
+        this.router.navigate(['/registros']);
       })
       .catch(console.log);
   }
