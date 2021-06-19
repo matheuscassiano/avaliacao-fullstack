@@ -26,7 +26,6 @@ export class ListComponent implements OnInit {
   }
 
   selectUser(user: any) {
-    console.log(user);
-    this.router.navigate([`/${user.name}/validar`])
+    this.router.navigate([`/${user.name}/validar`]);
   }
 }
