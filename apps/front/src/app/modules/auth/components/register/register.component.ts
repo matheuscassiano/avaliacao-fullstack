@@ -53,8 +53,6 @@ export class RegisterComponent implements OnInit {
     this.router.params.subscribe(({ name }) => {
       this.name = name;
     });
-
-    console.log(this.register);
   }
 
   addKnowledge(event: any) {
@@ -62,7 +60,6 @@ export class RegisterComponent implements OnInit {
     const item = this.knowledge.find(
       (item) => item.id === Number(id)
     ) as Knowledge;
-    console.log(item);
     if (this.selectedKnowledge.indexOf(item) === -1) {
       this.selectedKnowledge.push(item);
     }
