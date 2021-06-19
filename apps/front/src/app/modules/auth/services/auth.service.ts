@@ -6,12 +6,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthService {
   baseUrl = 'http://localhost:3333/api';
+  token = localStorage.getItem('token');
 
   constructor(private httpClient: HttpClient) {}
 
   // Headers
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.token}`,
+    }),
   };
 
   login(user: { email: string; password: string }): Promise<any> {
@@ -31,5 +35,14 @@ export class AuthService {
     knowledge: number[];
   }): Promise<any> {
     return this.httpClient.post(`${this.baseUrl}/users`, user).toPromise();
+  }
+
+  findOneUserByName(name: string): Promise<any> {
+    console.log(this.httpOptions.headers);
+    return this.httpClient
+      .get(`${this.baseUrl}/users/name/${name}`, {
+        headers: this.httpOptions.headers,
+      })
+      .toPromise();
   }
 }
