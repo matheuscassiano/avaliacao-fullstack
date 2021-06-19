@@ -24,8 +24,8 @@ export class User {
   @Column({ unique: true })
   cpf: string;
 
-  @Column()
-  phone_number: string;
+  @Column({ name: 'phone_number'})
+  phoneNumber: string;
 
   @Column({ name: 'state' })
   isValid: boolean;
