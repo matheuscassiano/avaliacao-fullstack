@@ -1,4 +1,4 @@
-import { IsNotEmpty, Length } from 'class-validator';
+import { IsArray, IsNotEmpty, Length } from 'class-validator';
 
 export class UserCreateDto {
   @IsNotEmpty({ message: 'Campo nome é obrigatório!' })
@@ -14,6 +14,6 @@ export class UserCreateDto {
   @Length(14, 14)
   cpf: string;
 
-  @IsNotEmpty({ message: 'Campo de validação é obrigatório!' })
-  isValit: boolean;
+  @IsArray({ message: 'Este item deverá ser enviado como array' })
+  knowledge: number[];
 }

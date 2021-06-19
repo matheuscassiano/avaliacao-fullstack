@@ -14,6 +14,6 @@ export class UserUpdateDto {
   @Length(14)
   cpf: string;
 
-  @IsNotEmpty({ message: 'Campo Telefone é obrigatório!' })
-  phoneNumber: string;
+  @IsNotEmpty({ message: 'Campo de validação é obrigatório!' })
+  isValit: boolean;
 }
