@@ -2,6 +2,27 @@
   padding: 2em 5em;
 }
 
+.search-container {
+  display: flex;
+
+  input {
+    width: 25em;
+    padding: .5em 1em;
+    border-radius: 0.2em;
+    border: 1px solid rgba(255, 166, 0, 0.3);
+    background-color: rgba(255, 166, 0, 0.1);
+  }
+
+  .button {
+    border: 0;
+    border-radius: 0.2em;
+    padding: 0.5em 1em;
+    margin: 0 .5em;
+    cursor: pointer;
+    background-color: #ffd484;
+  }
+}
+
 .users-table {
   width: 100%;
   border-spacing: 0 0.5rem;
@@ -50,18 +71,4 @@ table tbody tr:hover td {
 .invalid {
   color: orangered;
   font-weight: 500;
-}
-
-.actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button {
-  border: 0;
-  border-radius: 0.2em;
-  padding: 0.5em 1em;
-  cursor: pointer;
-  background-color: orange;
 }
