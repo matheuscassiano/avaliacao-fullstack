@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService } from './modules/shared/services/auth.guard';
 
 // Guards
 
@@ -11,6 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'registros',
+    canActivate: [AuthGuardService],
     loadChildren: () =>
       import('./modules/users/users.module').then((m) => m.UsersModule),
   },
