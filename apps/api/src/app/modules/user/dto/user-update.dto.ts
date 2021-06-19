@@ -18,5 +18,5 @@ export class UserUpdateDto {
   cpf: string;
 
   @IsNotEmpty({ message: 'Campo de validação é obrigatório!' })
-  isValid: boolean;
+  validatedAt: string;
 }

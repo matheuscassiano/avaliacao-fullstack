@@ -30,8 +30,8 @@ export class User {
   @Column({ name: 'phone_number' })
   phoneNumber: string;
 
-  @Column({ name: 'state' })
-  isValid: boolean;
+  @Column({ name: 'validated_at' })
+  validatedAt?: string;
 
   @ManyToMany(() => Knowledge, { cascade: true, eager: true })
   @JoinTable({
