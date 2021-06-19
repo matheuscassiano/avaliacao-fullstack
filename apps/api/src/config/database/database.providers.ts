@@ -1,22 +1,13 @@
-import { createConnection } from 'typeorm';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { User } from '../../app/modules/user/entities/user.entity';
 
-export const databaseProviders = [
-  {
-    provide: 'DATABASE_CONNECTION',
-    useFactory: async () =>
-      await createConnection({
-        type: 'mysql',
-        host: 'localhost',
-        port: 3306,
-        username: 'root',
-        password: '',
-        database: 'avaliacao',
-        entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-        synchronize: true,
-        logging: false,
-        cli: {
-          migrationsDir: 'src/database/migrations',
-        },
-      }),
-  },
-];
+export const databaseProviders: TypeOrmModuleOptions = {
+  type: 'mysql',
+  host: 'localhost',
+  port: 3306,
+  username: 'root',
+  password: '',
+  database: 'avaliacao',
+  entities: [User],
+  synchronize: true,
+}
