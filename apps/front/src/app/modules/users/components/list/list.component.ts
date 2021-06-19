@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -7,7 +8,10 @@ import { UsersService } from '../../services/users.service';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly router: Router
+  ) {}
 
   list: any[] = [];
   ngOnInit() {
@@ -19,5 +23,10 @@ export class ListComponent implements OnInit {
         );
       })
       .catch(console.log);
+  }
+
+  selectUser(user: any) {
+    console.log(user);
+    this.router.navigate([`/${user.name}/validar`])
   }
 }
