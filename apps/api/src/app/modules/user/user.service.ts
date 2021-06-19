@@ -33,14 +33,21 @@ export class UserService {
       return await this.userRepository.findOneOrFail(id);
     } catch (error) {
       throw new HttpException(
-        { message: 'Usuários não encontrados!' },
+        { message: 'Usuário não encontrado!' },
         HttpStatus.BAD_REQUEST
       );
     }
   }
 
   async findByEmail(email: string): Promise<User> {
+    try {
     return this.userRepository.findOneOrFail({ email });
+  } catch (error) {
+    throw new HttpException(
+      { message: 'Usuário não encontrado!' },
+      HttpStatus.BAD_REQUEST
+    );
+  }
   }
 
   async create(body: UserCreateDto): Promise<User> {
