@@ -5,6 +5,7 @@ import { UserCreateDto } from './dto/user-create.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
 import { UserKnowledge } from './entities/user-knowledge.entity';
 import { User } from './entities/user.entity';
+import * as md5 from 'md5';
 
 @Injectable()
 export class UserService {
@@ -38,9 +39,16 @@ export class UserService {
     }
   }
 
+  async findByEmail(email: string): Promise<User> {
+    return this.userRepository.findOneOrFail({ email });
+  }
+
   async create(body: UserCreateDto): Promise<User> {
     try {
-      const entity = Object.assign(new User(), body);
+      const entity = Object.assign(new User(), {
+        ...body,
+        password: md5(body.password),
+      });
 
       const user = await this.userRepository.save(entity);
       body.knowledge.map(async (knowledgeId) => {
