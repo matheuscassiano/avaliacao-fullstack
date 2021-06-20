@@ -1,0 +1,41 @@
+<main class="container">
+  <div class="info">
+    <h2 class="title">{{ user?.name }}</h2>
+    <table id="vertical-1">
+      <tr>
+        <th>Email</th>
+        <td>{{ user?.email }}</td>
+      </tr>
+      <tr>
+        <th>CPF</th>
+        <td>{{ user?.cpf }}</td>
+      </tr>
+      <tr>
+        <th>Celular</th>
+        <td>{{ user?.phoneNumber }}</td>
+      </tr>
+      <tr>
+        <th>Estado</th>
+        <td [class]="user?.validatedAt ? 'valid' : 'invalid'">
+          {{ user?.validatedAt ? 'Validado' : 'Não validado' }} |
+          {{ user?.validatedAt | date: 'dd/MM/YYYY - hh:mm' }}
+        </td>
+      </tr>
+      <tr>
+        <th>Conhecimentos</th>
+        <td>{{ user?.knowledge }}</td>
+      </tr>
+    </table>
+    <footer>
+      <button class="button refuse" (click)="refuse()">Não Validar</button>
+      <button
+        class="button approve"
+        (click)="validate()"
+        [disabled]="user?.validatedAt.length >= 1"
+      >
+        Validar
+      </button>
+    </footer>
+  </div>
+  <app-logout></app-logout>
+</main>

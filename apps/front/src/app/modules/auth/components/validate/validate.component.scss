@@ -1,0 +1,80 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff9615;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2.5em 2em;
+  border-radius: 0.2em;
+  background-color: white;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+.title {
+  font-weight: 500;
+}
+
+table {
+  border-spacing: 1em 0;
+}
+
+th {
+  text-align: left;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.submit {
+  border: 0;
+  width: 100%;
+  padding: 1em;
+  border-radius: 0.1em;
+  background-color: #ff9615;
+}
+
+footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1em;
+}
+
+.button {
+  flex: 1;
+  max-width: 20em;
+  border: 0;
+  padding: 0.8em 2em;
+  border-radius: 0.3em;
+  margin: 0 0.25em;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.refuse {
+  background-color: #e94460;
+}
+
+.approve {
+  background: #22c35a;
+}

@@ -13,7 +13,6 @@ import { KnowledgeCreateDto } from './dto/knowledge-create.dto';
 import { KnowledgeUpdateDto } from './dto/knowledge-update.dto';
 import { KnowledgeService } from './knowledge.service';
 
-@UseGuards(JwtAuthGuard)
 @Controller('knowledge')
 export class KnowledgeController {
   constructor(private readonly userService: KnowledgeService) {}
@@ -23,6 +22,7 @@ export class KnowledgeController {
     return this.userService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() body: KnowledgeCreateDto) {
     return this.userService.create(body);

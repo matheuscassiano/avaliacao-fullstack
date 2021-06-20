@@ -13,19 +13,26 @@ import { UserCreateDto } from './dto/user-create.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
 import { UserService } from './user.service';
 
-@UseGuards(JwtAuthGuard)
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   findAll() {
     return this.userService.findAll();
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   findOne(@Param('id') id: number) {
     return this.userService.findOne(id);
+  }
+
+  @Get('name/:name')
+  @UseGuards(JwtAuthGuard)
+  findOneByName(@Param('name') name: string) {
+    return this.userService.findOneByName(name);
   }
 
   @Post()
@@ -34,11 +41,13 @@ export class UserController {
   }
 
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
   update(@Param('id') id: number, @Body() body: UserUpdateDto) {
     return this.userService.update(id, body);
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   delete(@Param('id') id: number) {
     return this.userService.delete(id);
   }
