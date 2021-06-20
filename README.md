@@ -10,7 +10,7 @@
 
 ## Descrição do Projeto
 
-Projeto realizado como teste técnico para vaga de programador na mesha. technology
+Projeto realizado como teste técnico para vaga de desenvolvedor.
 
 ## Instalação
 
