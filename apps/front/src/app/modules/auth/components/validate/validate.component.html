@@ -15,6 +15,13 @@
         <td>{{ user?.phoneNumber }}</td>
       </tr>
       <tr>
+        <th>Estado</th>
+        <td [class]="user?.validatedAt ? 'valid' : 'invalid'">
+          {{ user?.validatedAt ? 'Validado' : 'Não validado' }} |
+          {{ user?.validatedAt | date: 'dd/MM/YYYY - hh:mm' }}
+        </td>
+      </tr>
+      <tr>
         <th>Conhecimentos</th>
         <td>{{ user?.knowledge }}</td>
       </tr>
