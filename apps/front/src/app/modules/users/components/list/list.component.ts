@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UsersService } from '../../services/users.service';
 
 @Component({
@@ -11,7 +12,8 @@ import { UsersService } from '../../services/users.service';
 export class ListComponent implements OnInit {
   constructor(
     private readonly usersService: UsersService,
-    private readonly router: Router
+    private readonly router: Router,
+    private toastr: ToastrService
   ) {}
 
   searchForm = new FormGroup({
@@ -30,7 +32,9 @@ export class ListComponent implements OnInit {
         );
         this.filteredList = this.list;
       })
-      .catch(console.log);
+      .catch(({ error }) =>
+        this.showError(error.message, 'Recarregue a página')
+      );
   }
 
   selectUser(user: any) {
@@ -38,7 +42,6 @@ export class ListComponent implements OnInit {
   }
 
   getAll() {
-    console.log(this.list);
     this.filteredList = this.list;
   }
 
@@ -49,5 +52,9 @@ export class ListComponent implements OnInit {
         .toLocaleLowerCase()
         .includes(text.trim().toLocaleLowerCase());
     });
+  }
+
+  showError(title: string, message: string) {
+    this.toastr.error(message, title);
   }
 }

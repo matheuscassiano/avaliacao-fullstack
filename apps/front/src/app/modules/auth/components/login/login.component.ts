@@ -5,6 +5,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,7 +18,11 @@ export class LoginComponent implements OnInit {
     password: new FormControl(),
   });
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit() {}
 
@@ -29,7 +35,16 @@ export class LoginComponent implements OnInit {
       .then((res) => {
         localStorage.setItem('token', res.access_token);
         this.router.navigate(['/registros']);
+        this.showSuccess('Login!', 'Login realizado com sucesso!');
       })
-      .catch(console.log);
+      .catch(() => this.showError('Login', 'Erro ao efetuar login'));
+  }
+
+  showSuccess(title: string, message: string) {
+    this.toastr.success(message, title);
+  }
+
+  showError(title: string, message: string) {
+    this.toastr.error(message, title);
   }
 }

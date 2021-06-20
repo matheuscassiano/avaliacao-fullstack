@@ -5,6 +5,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
+import { ToastrService } from 'ngx-toastr';
+
 interface Knowledge {
   id: number;
   name: string;
@@ -41,14 +43,17 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: ActivatedRoute
+    private router: ActivatedRoute,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
     this.authService
       .findAllKnowledge()
       .then((res) => (this.knowledge = res))
-      .catch(() => null);
+      .catch(({ error }) =>
+        this.showError(error.message, 'Recarregue a página')
+      );
 
     this.router.params.subscribe(({ name }) => {
       this.name = name;
@@ -73,9 +78,9 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     const knowledge = this.selectedKnowledge.map((item) => item.id);
     if (knowledge.length > 4) {
-      console.log('error muito longo');
+      this.showError('Conhecimentos', 'Selecione menos itens');
     } else if (knowledge.length < 1) {
-      console.log('error muito curto');
+      this.showError('Conhecimentos', 'Selecione mais itens');
     } else if (this.register.valid) {
       this.authService
         .register({
@@ -87,9 +92,17 @@ export class RegisterComponent implements OnInit {
           knowledge,
         })
         .then(() => {
-          alert('Você foi cadastrado com sucesso!');
+          this.showSuccess('Parabéns!', 'Você foi cadastrado com sucesso!');
         })
-        .catch(() => null);
+        .catch(({ error }) => this.showError('Campos inválido', error.message));
     }
+  }
+
+  showSuccess(title: string, message: string) {
+    this.toastr.success(message, title);
+  }
+
+  showError(title: string, message: string) {
+    this.toastr.error(message, title);
   }
 }
