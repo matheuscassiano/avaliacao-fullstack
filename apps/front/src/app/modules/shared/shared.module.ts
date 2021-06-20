@@ -5,11 +5,9 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { AuthGuardService } from './services/auth.guard';
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   declarations: [SharedComponent, LogoutComponent],
   exports: [LogoutComponent],
-  providers: [AuthGuardService]
+  providers: [AuthGuardService],
 })
-export class SharedModule { }
+export class SharedModule {}
