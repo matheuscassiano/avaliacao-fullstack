@@ -8,6 +8,7 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBody } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { KnowledgeCreateDto } from './dto/knowledge-create.dto';
 import { KnowledgeUpdateDto } from './dto/knowledge-update.dto';
@@ -24,11 +25,13 @@ export class KnowledgeController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
+  @ApiBody({ type: KnowledgeCreateDto })
   create(@Body() body: KnowledgeCreateDto) {
     return this.userService.create(body);
   }
 
   @Put(':id')
+  @ApiBody({ type: KnowledgeUpdateDto })
   update(@Param('id') id: number, @Body() body: KnowledgeUpdateDto) {
     return this.userService.update(id, body);
   }
