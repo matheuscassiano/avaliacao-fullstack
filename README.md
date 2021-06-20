@@ -60,10 +60,10 @@ STORAGE="./storage"
 
 ```bash
 # Clone este repositório
-$ git clone https://github.com/matheuscassiano/avaliacao-mesha
+$ git clone https://github.com/matheuscassiano/avaliacao-fullstack
 
 # Acesse a pasta do projeto no terminal/cmd
-$ cd avaliacao-mesha
+$ cd avaliacao-fullstack
 
 # Instale as dependências com npm
 $ npm install
