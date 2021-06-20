@@ -38,9 +38,24 @@ export class AuthService {
   }
 
   findOneUserByName(name: string): Promise<any> {
-    console.log(this.httpOptions.headers);
     return this.httpClient
       .get(`${this.baseUrl}/users/name/${name}`, {
+        headers: this.httpOptions.headers,
+      })
+      .toPromise();
+  }
+
+  update(id: string, body: any): Promise<any> {
+    return this.httpClient
+      .put(`${this.baseUrl}/users/${id}`, body, {
+        headers: this.httpOptions.headers,
+      })
+      .toPromise();
+  }
+
+  delete(id: string): Promise<any> {
+    return this.httpClient
+      .delete(`${this.baseUrl}/users/${id}`, {
         headers: this.httpOptions.headers,
       })
       .toPromise();
