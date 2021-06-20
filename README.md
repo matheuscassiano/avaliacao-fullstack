@@ -1,4 +1,4 @@
-# DESAFIO MESHA
+# DESAFIO FULLSTACK JS
 
 [![Front feito com Angular](https://img.shields.io/badge/Front%20feito%20com-Angular-red?style=for-the-badge&logo=angular)](https://angular.io/)
 [![Api feita com NestJS](https://img.shields.io/badge/Api%20feita%20com-NestJS-red?style=for-the-badge&logo=nestjs)](https://nestjs.com/)
