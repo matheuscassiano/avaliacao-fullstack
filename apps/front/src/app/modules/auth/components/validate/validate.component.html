@@ -20,8 +20,14 @@
       </tr>
     </table>
     <footer>
-      <button class="button refuse">Não Validar</button>
-      <button class="button approve">Validar</button>
+      <button class="button refuse" (click)="refuse()">Não Validar</button>
+      <button
+        class="button approve"
+        (click)="validate()"
+        [disabled]="user?.validatedAt.length >= 1"
+      >
+        Validar
+      </button>
     </footer>
   </div>
   <app-logout></app-logout>
