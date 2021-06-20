@@ -84,3 +84,152 @@ $ npm start api
 # Para executar o front rode <http://localhost:4200>
 $ npm start front
 ```
+
+## Rotas API
+
+Ao rodar o projeto, também é possivel visualizar as rotas pelo Swagger: http://localhost:3333/api
+
+```json
+{
+  /* Usuário válido */
+  "email": "yagocaleb@gmail.com",
+  "password": "123456789"
+}
+```
+
+### GET /api/knowledge
+
+Retorna todos os itens de conhecimentos cadastrados (Git, React, PHP, NodeJS, DevOps, Banco de Dados, TypeScript)
+
+### POST /api/knowledge - (Protegida com token JWT Guard)
+
+Cadastrar os itens de conhecimento. Recebe:
+
+```json
+{
+  "name": "MongoDB"
+}
+```
+
+### PUT /api/knowledge/:id - (Protegida com token JWT Guard)
+
+Edita os itens de conhecimento já cadastrados. Recebe um id na rota e:
+
+```json
+{
+  "name": "PostgreSQL"
+}
+```
+
+### DELETE /api/knowledge/:id - (Protegida com token JWT Guard)
+
+Deleta os itens de conhecimento já cadastrados. Recebe um id na rota.
+
+<hr>
+
+### GET /api/users - (Protegida com token JWT Guard)
+
+Retorna todos os usuários cadastrados.
+
+### POST /api/users
+
+Cadastra usuários. Recebe:
+
+```json
+{
+  "name": "Matheus Cassiano",
+  "email": "matheuscassiano9@gmail.com",
+  "password": "098123765",
+  "cpf": "121.987.484-10",
+  "knowledge": [1, 2, 3],
+  "phoneNumber": "(82) 98739-1037"
+}
+```
+
+### GET /api/users/:id - (Protegida com token JWT Guard)
+
+Retorna um usuário especifico. Recebe um id na rota.
+
+### PUT /api/users/:id - (Protegida com token JWT Guard)
+
+Edita um usuário especifico. Recebe um id na rota e:\
+(Somente são necessários os campos que serão alterados)
+
+```json
+{
+  "name": "Matheus Cassiano",
+  "email": "matheuscassiano9@gmail.com",
+  "password": "098123765",
+  "cpf": "121.987.484-10",
+  "knowledge": [1, 2, 3],
+  "phoneNumber": "(82) 98739-1037"
+}
+```
+
+### DELETE /api/users/:id - (Protegida com token JWT Guard)
+
+Deleta um usuário especifico. Recebe um id na rota
+
+### GET /api/users/name/:name - (Protegida com token JWT Guard)
+
+Retorna um usuário especifico. Recebe um nome na rota.
+
+### GET /api/auth/login
+
+Retorna o token de acesso JWT para acessar as demais rotas. Recebe:
+
+```json
+{
+  "email": "matheuscassiano9@gmail.com",
+  "password": "098123765"
+}
+```
+
+## Rotas Front
+
+### /login
+
+Realiza o login e guarda o token JWT. Recebe:
+
+```json
+{
+  "email": "matheuscassiano9@gmail.com",
+  "password": "098123765"
+}
+```
+
+### /:name/registrar
+
+Responsavel por cadastrar novos usuários: Recebe o nome da pessoa na rota, seguida de registrar e :
+
+```json
+{
+  "name": "Matheus Cassiano",
+  "email": "matheuscassiano9@gmail.com",
+  "password": "098123765",
+  "cpf": "121.987.484-10",
+  "knowledge": [1, 2, 3],
+  "phoneNumber": "(82) 98739-1037"
+}
+```
+
+### /:name/validar - (Protegida com AuthGuard)
+
+Responsavel por mudar o status de Não Validade para Validado e exibir os dados de um determinado usuário. Recebe o nome de quem for ser aprovado na rota, seguido de validar e :
+(validatedAt recebe o timestamps atual do sistema)
+
+```json
+{
+  "name": "Matheus Cassiano",
+  "email": "matheuscassiano9@gmail.com",
+  "password": "098123765",
+  "cpf": "121.987.484-10",
+  "knowledge": [1, 2, 3],
+  "phoneNumber": "(82) 98739-1037",
+  "validatedAt": "2021-06-19 10:51:43.000000"
+}
+```
+
+### /registros - (Protegida com AuthGuard)
+
+Lista todos os seus usuários em ordem alfabetica e seus status
