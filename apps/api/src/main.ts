@@ -2,7 +2,7 @@
  * This is not a production server yet!
  * This is only a minimal backend to get started.
  */
-
+ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 
@@ -22,6 +22,16 @@ async function bootstrap() {
       whitelist: true,
     })
   );
+
+  const config = new DocumentBuilder()
+    .setTitle('Desafio Mesha')
+    .setDescription('Projeto Fullstack NodeJS de teste para vaga de desenvolvedor!')
+    .setVersion('1.0')
+    .addTag('app')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
+
   await app.listen(port, () => {
     Logger.log('Listening at http://localhost:' + port + '/' + globalPrefix);
   });

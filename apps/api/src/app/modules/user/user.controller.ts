@@ -8,6 +8,7 @@ import {
   Put,
   UseGuards,
 } from '@nestjs/common';
+import { ApiBody } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { UserCreateDto } from './dto/user-create.dto';
 import { UserUpdateDto } from './dto/user-update.dto';
@@ -36,12 +37,14 @@ export class UserController {
   }
 
   @Post()
+  @ApiBody({ type: UserCreateDto })
   create(@Body() body: UserCreateDto) {
     return this.userService.create(body);
   }
 
   @Put(':id')
   @UseGuards(JwtAuthGuard)
+  @ApiBody({ type: UserUpdateDto })
   update(@Param('id') id: number, @Body() body: UserUpdateDto) {
     return this.userService.update(id, body);
   }
